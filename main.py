@@ -12,8 +12,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.openapi.docs import (get_redoc_html, get_swagger_ui_html)
 from tortoise.contrib.fastapi import register_tortoise
-from core import Router
+from core import Router, Events
 from config import settings
+from database.mysql import DB_ORM_CONFIG
 
 app = FastAPI(title=settings.PROJECT_NAME,
               description=settings.DESCRIPTION,
@@ -30,15 +31,6 @@ app.add_middleware(
     allow_methods=settings.CORS_ALLOW_METHODS,
     allow_headers=settings.CORS_ALLOW_HEADERS,
 )
-
-# 连接数据库
-register_tortoise(
-    app,
-    db_url=f'mysql://{settings.DB_USERNAME}:{settings.DB_PASSWORD}'
-           f'@{settings.DB_IP}:{settings.DB_PORT}/{settings.DATABASE}',
-    modules={"models": []},
-    generate_schemas=True,
-    add_exception_handlers=True)
 
 
 # 重写 swagger_ui 接口文档设置，使文档能够在局域网访问
@@ -62,9 +54,11 @@ async def redoc_html():
         redoc_js_url="/redoc.standalone.js",
     )
 
-
+# 事件监听
+app.add_event_handler("startup", Events.startup(app))       # fastapi启动时触发，包含注册数据库、redis等操作
+app.add_event_handler("shutdown", Events.stopping(app))     # fastapi关闭时触发
 # 路由
-app.include_router(Router.router)
+app.include_router(Router.router)   # 包含各个路由
 # 设置静态资源目录
 app.mount('/', StaticFiles(directory=settings.STATIC_DIR), name="static")
 app.state.views = Jinja2Templates(directory=settings.TEMPLATE_DIR)

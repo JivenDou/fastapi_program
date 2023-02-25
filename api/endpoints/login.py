@@ -12,10 +12,10 @@ async def verify_login(item: login.LoginInfo):
     - "userName"：用户名（类型：str）
     - "password"：密码（类型：str）
     """
-    db = Tortoise.get_connection("default")
+    db = Tortoise.get_connection("db1")
     user_name = item.userName
     password = item.password
-    sql = f"SELECT * FROM user WHERE user_name = '{user_name}' AND password = '{password}'"
+    sql = f"SELECT * FROM user WHERE username = '{user_name}' AND password = '{password}'"
     result = await db.execute_query_dict(sql)
     if result:
         return {"msg": "success"}
