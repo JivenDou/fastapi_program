@@ -3,7 +3,7 @@
 @Author: djw
 @CreateDate  : 2022/11/4 15:20
 @UpdateDate  : 2022/11/28 10:33
-@Description  : 此文件为入口文件
+@Description  : 此文件为程序运行文件
 """
 import uvicorn
 from fastapi import FastAPI
@@ -11,10 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.openapi.docs import (get_redoc_html, get_swagger_ui_html)
-from tortoise.contrib.fastapi import register_tortoise
 from core import Router, Events
 from config import settings
-from database.mysql import DB_ORM_CONFIG
 
 app = FastAPI(title=settings.PROJECT_NAME,
               description=settings.DESCRIPTION,

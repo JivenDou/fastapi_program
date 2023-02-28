@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 from config import DB_ORM_CONFIG
 
+
 async def register_mysql(app: FastAPI):
     # 注册数据库
     register_tortoise(

@@ -3,7 +3,7 @@
 @Author: djw
 @CreateDate  : 2022/11/4 15:20
 @UpdateDate  : 2022/11/28 10:33
-@Description  : 此文件为配置文件（修改此文件即可）
+@Description  : 此文件为配置文件（启动新项目修改此文件即可）
 """
 import os
 from pydantic import BaseSettings
@@ -19,6 +19,9 @@ class Config(BaseSettings):
     API_IP: str = "0.0.0.0"     # fastapi接口ip
     API_PORT: int = 8045        # fastapi接口端口
     RELOAD: bool = False
+    # redis配置信息（若链接多个redis，需要配置）
+    REDIS_HOST: str = '127.0.0.1'
+    REDIS_POST: int = 6379
     # 项目信息
     VERSION: str = "0.0.1"  # 版本号
     PROJECT_NAME: str = "XXXX系统接口文档"    # 接口文档名
@@ -34,7 +37,8 @@ class Config(BaseSettings):
 
 
 settings = Config()
-# =============================数据库配置=============================
+
+# =============================mysql数据库配置=============================
 DB_ORM_CONFIG = {
     "connections": {
         # 链接第一个数据库
@@ -66,7 +70,7 @@ DB_ORM_CONFIG = {
             "default_connection": "db1"     # 上面链接的数据库键名
         },
         # "db2": {
-        #     "models": ["database.models.db1"],
+        #     "models": ["database.models.db2"],
         #     "default_connection": "db2"
         # },
     },

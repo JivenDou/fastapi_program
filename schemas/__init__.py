@@ -4,4 +4,4 @@
 @Author: djw
 @Des: 各个接口的请求体body模型
 """
-from . import login
+from .endpoints import login
