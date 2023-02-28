@@ -23,10 +23,10 @@ def startup(app: FastAPI) -> Callable:
         print("==================FastApi已启动==================")
         # 注册mysql数据库
         await register_mysql(app)
-        print("---------mysql数据库注册成功---------")
+        print("---------mysql数据库连接成功---------")
         # 注入缓存到app state
-        app.state.cache = await sys_cache()
-        print("---------redis数据库连接成功---------")
+        # app.state.cache = await sys_cache()
+        # print("---------redis连接成功---------")
         # app.state.code_cache = await code_cache()
     return app_start
 
@@ -39,10 +39,10 @@ def stopping(app: FastAPI) -> Callable:
     """
     async def app_stop() -> None:
         # APP停止时触发
-        print("==================FastApi已停止==================")
-        cache: Redis = await app.state.cache
+        # cache: Redis = await app.state.cache
         # code: Redis = await app.state.code_cache
-        await cache.close()
-        print("---------redis连接已断开---------")
+        # await cache.close()
+        # print("---------redis连接已断开---------")
         # await code.close()
+        print("==================FastApi已停止==================")
     return app_stop

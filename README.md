@@ -3,7 +3,7 @@
 ## 接口文档
 1. http://127.0.0.1:XXXX/docs
 2. http://127.0.0.1:XXXX/redoc
-> ![img_3.png](static/img/img_11.png)![img_2.png](static/img/img_10.png)
+> ![img_2.png](static/img/img_12.png)![img_2.png](static/img/img_11.png)
 
 ## 配置文件的使用
 1. 首次使用，可以打开 “config.py” 对本项目配置信息进行设置，一般只设置如图红色框标记部分
@@ -72,17 +72,21 @@
 > 
 > ![img_6.png](static/img/img_6.png)
 2. redis数据库操作
-> 1.包含fastapi中的Request类
+> 1.包含：fastapi中的Depends类，database/redis.py文件中sys_cache()函数和aioredis中的Redis类
 > 
-> ![img_7.png](static/img/img_7.png)
+> ![img_2.png](static/img/img_7.png)
 > 
-> 2.在使用接口函数时，将Request类作为参数传进去
+> 2.在使用接口函数时，按下图写法注入依赖
 > 
-> ![img_8.png](static/img/img_8.png)
+> ![img_3.png](static/img/img_8.png)
 > 
-> 3.基本设置/获取键值操作：通过异步执行 “req.app.state.cache” 中 “set()” 和 “get()” 的方法，name参数为键名，value为值，ex为过期时间（单位：秒，不写则为永久存活）
+> 3.基本设置/获取键值操作：通过异步执行 “redis.set()” 和 “redis.get()” 的方法，name参数为键名，value为值，ex为过期时间（单位：秒，不写则为永久存活）
 > 
-> ![img_9.png](static/img/img_9.png)
+> ![img_4.png](static/img/img_9.png)
+> 
+> 4.redis的其他操作：通过 “redis.” 就可以自动提示该类下的所有方法
+> 
+> ![img_5.png](static/img/img_10.png)
 
 ## 程序打包exe过程
 1. 终端执行第一次打包命令：pyinstaller -F -p 当前项目目录\venv\Lib\site-packages main.py
