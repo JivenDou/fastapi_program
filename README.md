@@ -102,3 +102,4 @@
 
 ## 其他参考链接
 fastapi官方文档：https://fastapi.tiangolo.com/zh/
+aioredis官方文档：https://aioredis.readthedocs.io/en/latest/
