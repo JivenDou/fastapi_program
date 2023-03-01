@@ -8,8 +8,8 @@
 from typing import Callable
 from fastapi import FastAPI
 from database.mysql import register_mysql
-from database.redis import sys_cache
-from aioredis import Redis
+# from database.redis import sys_cache
+# from aioredis import Redis
 
 
 def startup(app: FastAPI) -> Callable:

@@ -4,3 +4,4 @@
 @Author: djw
 @Des: fastapi接口程序
 """
+from . import api

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from database.redis import sys_cache
 from aioredis import Redis
-from schemas.endpoints import login
+from schemas import endpoints
 from core.Response import success, fail
 from tortoise import Tortoise
 
@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.post("/Login", summary="验证登录信息")
-async def verify_login(item: login.LoginInfo, redis: Redis = Depends(sys_cache)):
+async def verify_login(item: endpoints.LoginInfo, redis: Redis = Depends(sys_cache)):
     """
     请求参数说明：
     - "userName"：用户名（类型：str）
