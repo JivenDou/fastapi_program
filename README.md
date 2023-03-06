@@ -87,21 +87,21 @@
 > 
 > ![img_6.png](static/img/img_6.png)
 2. redis数据库操作
-> 1.包含：fastapi中的Depends类，database/redis.py文件中sys_cache()函数和aioredis中的Redis类
+> 1.包含：fastapi中的Request类
 > 
-> ![img_2.png](static/img/img_7.png)
+> ![img.png](img.png)
 > 
-> 2.在使用接口函数时，按下图写法注入依赖
+> 2.在使用接口函数时，引入Request
 > 
-> ![img_3.png](static/img/img_8.png)
+> ![img_1.png](img_1.png)
 > 
-> 3.基本设置/获取键值操作：通过异步执行 “redis.set()” 和 “redis.get()” 的方法，name参数为键名，value为值，ex为过期时间（单位：秒，不写则为永久存活）
+> 3.基本设置/获取键值操作：通过异步执行 “req.app.state.cache.set()” 和 “req.app.state.cache.get()” 的方法，name参数为键名，value为值，ex为过期时间（单位：秒，不写则为永久存活）
 > 
-> ![img_4.png](static/img/img_9.png)
+> ![img_3.png](img_3.png)
 > 
-> 4.redis的其他操作：通过 “redis.” 就可以自动提示该类下的所有方法
+> 4.redis的其他操作：可以通过"./core/Events.py"文件中，在下图位置输入“app.state.cache.”的方式查看其他方法，或参考aioredis文档中的方法
 > 
-> ![img_5.png](static/img/img_10.png)
+> ![img_2.png](img_2.png)
 
 ## 五、schemas请求体body模型的使用
 1. 验证请求体 pydantic 库的使用：
