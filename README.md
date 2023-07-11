@@ -168,5 +168,5 @@
 3. 哔哩哔哩视频教程：https://www.bilibili.com/video/BV13F411u76R
 
 ## 九、官方文档参考链接
-fastapi官方文档：https://fastapi.tiangolo.com/zh/
-aioredis官方文档：https://aioredis.readthedocs.io/en/latest/
+1. fastapi官方文档：https://fastapi.tiangolo.com/zh/
+2. aioredis官方文档：https://aioredis.readthedocs.io/en/latest/

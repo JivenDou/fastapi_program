@@ -8,9 +8,9 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi.openapi.docs import (get_redoc_html, get_swagger_ui_html)
+# from fastapi.staticfiles import StaticFiles
+# from fastapi.templating import Jinja2Templates
+# from fastapi.openapi.docs import (get_redoc_html, get_swagger_ui_html)
 from core import Router, Events
 from config import settings
 
@@ -18,8 +18,9 @@ app = FastAPI(title=settings.PROJECT_NAME,
               description=settings.DESCRIPTION,
               version=settings.VERSION,
               debug=settings.APP_DEBUG,
-              docs_url=None,
-              redoc_url=None)
+              # docs_url=None,
+              # redoc_url=None
+              )
 
 # 配置允许域名列表、允许方法、请求头、cookie等
 app.add_middleware(
